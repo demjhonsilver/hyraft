@@ -1,0 +1,27 @@
+# sig/engine.rbs
+module Engine
+  VERSION: String
+
+  class Circuit
+    @ports: Hash[Symbol, untyped]
+
+    def initialize: (?Hash[Symbol, untyped] ports) -> void
+    def execute: (?Hash[Symbol, untyped] input) -> untyped
+    def method_missing: (Symbol method, *untyped args) -> untyped
+    def respond_to_missing?: (Symbol method, bool include_private) -> bool
+  end
+
+  class Source
+    @id: String?
+
+    def initialize: (?id: String?) -> void
+    def to_hash: () -> Hash[Symbol, untyped]
+  end
+
+  class Port
+    def initialize: () -> void
+  end
+
+  # Framework helper methods
+  def self.require_root: (String path) -> void
+end

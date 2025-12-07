@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>500 - Internal Server Error</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      max-width: 800px;
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      color: #d9534f;
+      font-size: 48px;
+      margin-bottom: 20px;
+      animation: bounce 1s infinite alternate;
+    }
+
+    p, pre {
+      font-size: 16px;
+      margin-bottom: 10px;
+      word-wrap: break-word;
+    }
+
+    pre {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+      text-align: left;
+      overflow-x: auto;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>500 - Internal Server Error</h1> 
+    <p><strong>Error:</strong> {{message}}</p>
+    <pre>{{backtrace}}</pre>
+  </div>
+</body>
+</html>

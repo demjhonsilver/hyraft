@@ -1,0 +1,174 @@
+<metadata html>
+  <require file="lib/neonpulse" />
+  <title>[.page_title.]</title>
+  <meta name="description" content="[.page_description.]">
+  <meta name="keywords" content="[.page_keywords.]">
+  <link rel="canonical" href="[.page_url.]">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="[.page_title.]">
+  <meta property="og:description" content="[.page_description.]">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="[.page_url.]">
+  <meta property="og:image" content="[.page_image.]">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Home",
+  "headline": "[.page_title.]",
+  "description": "[.page_description.]",
+  "author": { "@type": "Person", "name": "[.author_name.]" },
+  "datePublished": "[.publish_date.]"
+}
+</script>
+</metadata>
+
+<displayer html>
+  <div class="main-container">
+    <!-- main-header -->
+    <div class="main-header">
+    <picture>
+  <source srcset="/images/hyr-logo.webp" type="image/webp">
+  <img src="/images/hyr-logo.png" alt="Hyr Logo" class="logo">
+</picture>
+      <h1>Hyraft</h1> Version: [.hyraft_version.]
+  
+
+    <welcome-message anyword="the new" framework="framework!"/>
+ 
+
+
+
+    <hr>
+       <p class="home-subtitle">
+ <span style="font-weight:bold; color:black;">Hexagonal Ruby framework (not MVC) </span> with reactive front-end support and full-stack capabilities. Hybrid SSR/CSR with Single-File Components ensures lightning-fast performance, scalability, maintainability, and SEO friendliness.</p>
+      
+
+
+
+            <div class="counter">
+              <button data-pulse="counter.decrease" class="counter-btn">-</button>
+              <span data-neon="count" class="count-display">10</span>
+              <button data-pulse="counter.increase" class="counter-btn">+</button>
+            </div>
+            <small data-neon="countStatus" class="status-text">Count: 10</small>
+          </div>
+
+  
+ <br>
+
+    <!-- home-features -->
+    <div class="main-feature"> 
+      <p class="home-subtitle">
+    <span style="font-weight:bold; color:red;">Find me:</span> adapter-intake/web-app/display/pages/home/home.hyr</p>
+      
+
+
+      <div class="home-feature-grid">
+        <div class="home-feature">
+          <div class="home-feature-icon"><img src="/icons/expli.svg" alt="No Magic" class="icon-home-feature"></div>
+          <h3>Explicit Code (No Magic)</h3>
+          <p>Enjoy a framework with explicit behavior—no hidden magic.</p>
+        </div>
+        <div class="home-feature">
+          <div class="home-feature-icon"><img src="/icons/hexagonal-arch.svg" alt="Hexagonal Architecture" class="icon-home-feature"></div>
+          <h3>Hexagonal Architecture</h3>
+          <p>Clean separation with ports, adapters, and use cases</p>
+        </div>
+        <div class="home-feature">
+        <div class="home-feature-icon"><img src="/icons/template-engine.svg" alt="Template Engine" class="icon-home-feature"></div>
+          <h3>Custom Template Engine</h3>
+          <p>.hyr files with metadata, displayer, transmuters, and manifestors</p>
+        </div>
+     
+      </div>
+    </div>
+ <p style="text-align:center;">Ruby Version: [.ruby_version.] | Platform: [.ruby_platform.] | OS: [.os_name.]</p>
+ <!-- Footer Section -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-info">
+     
+    </div>
+ 
+    <div class="footer-links">
+     
+      <div class="social-buttons">
+        <a href="https://github.com/demjhonsilver/hyraft" target="_blank" class="social-btn">
+          <img src="/icons/git-repo.svg" alt="Git" class="icon-footer"> Git Repository
+        </a>
+        <a href="https://hyraft.com" target="_blank" class="social-btn">
+           <img src="/icons/docs.svg" alt="Docs" class="icon-footer"> Documentation
+        </a>
+       
+      </div>
+    </div>
+    
+    <div class="footer-meta">
+      <p>&copy; <span id="current-year"></span> Hyraft Web Framework • Built by Demjhon Silver • MIT Licensed</p>
+    </div>
+  </div>
+</footer>
+
+
+
+
+  </div>
+</displayer>
+
+<transmuter rb>
+def page_title = @page_title || "Hyraft - Ruby framework"
+def page_description = @page_description || "Hexagonal Ruby framework with reactive front-end support and full-stack capabilities.
+Hybrid SSR/CSR with Single-File Components ensures performance, maintainability, and SEO friendliness."
+def page_keywords = @page_keywords || "ruby, framework, SFC, components, hyraft, hyr"
+def page_url = @page_url || "http://localhost:1091/"
+def page_image = @page_image || "http://localhost:1091/favicon.ico"
+def author_name = @author_name || "Hyraft Team"
+def publish_date = @publish_date || Time.now.strftime("%Y-%m-%d")
+
+def ruby_version = RUBY_VERSION
+def ruby_platform = RUBY_PLATFORM
+def os_name = Hyraft::SystemInfo.os_name
+def hyraft_version = defined?(Hyraft::VERSION) ? Hyraft::VERSION : "Unknown"
+
+def display_welcome_message(anyword:, framework:)
+   "<div class='home-tagline'>Welcome to #{anyword} Ruby #{framework}</div>"
+end
+
+</transmuter>
+
+<manifestor js>
+// Your JavaScript code
+  // Set current year automatically
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+
+// Reactive state management
+const appState = neonPulse.neonBatch({
+  count: 10,
+  countStatus: 'Count: 10',
+});
+
+
+// Counter pulses
+neonPulse.pulse('counter', {
+  increase: function() { 
+    console.log('🔷 Pulse: Increasing count');
+    appState.count.value++; 
+    appState.countStatus.value = `Count: ${appState.count.value}`;
+  },
+  
+  decrease: function() { 
+    console.log('🔶 Pulse: Decreasing count');
+    appState.count.value--; 
+    appState.countStatus.value = `Count: ${appState.count.value}`;
+  }
+});
+
+
+</manifestor>
+
+
+
+
+
+<style src="/styles/css/main.css" />

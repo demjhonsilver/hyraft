@@ -1,0 +1,50 @@
+# Gemfile
+source 'https://rubygems.org'
+
+#_________________________#
+#                         #
+#        FRAMEWORK        #
+
+gem 'hyraft'
+gem 'hyraft-rule'
+
+#_________________________#
+
+
+
+
+#_________________________#
+#                         #
+#         SERVER          #
+  gem "fiddle" #/ for windows
+  gem 'thin'
+# gem 'puma'
+# gem 'falcon', '~> 0.52.3'
+# gem 'async-http' # for http 3 (via Falcon)
+# gem 'iodine'
+ 
+#_________________________#
+
+
+#_________________________#
+#                         #
+#         DATABASE        #
+# gem 'pg'
+# gem 'mysql2', '~> 0.5.7'
+#_________________________#
+
+
+# Test gems compatible with Ruby 3.4
+
+=begin
+
+gem 'minitest', '~> 5.26', '>= 5.26.1'
+gem 'minitest-reporters', '~> 1.7', '>= 1.7.1'
+gem 'minitest-focus', '~> 1.4'
+gem 'mocha', '~> 2.8'
+gem 'rack-test', '~> 2.2', group: :test
+
+end
+
+=end
+

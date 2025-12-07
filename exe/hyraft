@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "hyraft"
+Hyraft::CLI.start(ARGV)
+

@@ -1,0 +1,88 @@
+# Rakefile
+require 'rake/testtask'
+
+namespace :test do
+  desc "Run all tests"
+  Rake::TestTask.new(:all) do |t|
+    t.libs << "test"
+    t.test_files = FileList[
+      "test/unit/**/*_test.rb",
+      "test/integration/**/*_test.rb",
+      "test/acceptance/**/*_test.rb"
+    ]
+    t.verbose = true
+    t.warning = false
+  end
+
+  desc "Run API tests only"
+  Rake::TestTask.new(:api) do |t|
+    t.libs << "test"
+    t.test_files = FileList[
+      "test/integration/adapter-intake/api-app/**/*_test.rb",
+      "test/acceptance/api/**/*_test.rb"
+    ]
+    t.verbose = true
+    t.warning = false
+  end
+
+  desc "Run unit tests only"
+  Rake::TestTask.new(:unit) do |t|
+    t.libs << "test"
+    t.test_files = FileList["test/unit/**/*_test.rb"]
+    t.verbose = true
+    t.warning = false
+  end
+
+  desc "Run integration tests only"
+  Rake::TestTask.new(:integration) do |t|
+    t.libs << "test"
+    t.test_files = FileList["test/integration/**/*_test.rb"]
+    t.verbose = true
+    t.warning = false
+  end
+
+  desc "Run acceptance tests only"
+  Rake::TestTask.new(:acceptance) do |t|
+    t.libs << "test"
+    t.test_files = FileList["test/acceptance/web/**/*_test.rb"]
+    t.verbose = true
+    t.warning = false
+  end
+
+  desc "Test database connection"
+  task :test_db do
+    require 'yaml'
+    require 'sequel'
+    
+    config = YAML.load_file('env.yml')
+    test_config = config['test']
+    
+    puts "Testing connection to: #{test_config['DB_DATABASE']}"
+    
+    begin
+      # Map 'mysql' to 'mysql2' for Sequel
+      adapter = test_config['DB_CONNECTION'] == 'mysql' ? 'mysql2' : test_config['DB_CONNECTION']
+      
+      db = Sequel.connect(
+        adapter: adapter,
+        host: test_config['DB_HOST'],
+        database: test_config['DB_DATABASE'],
+        username: test_config['DB_USERNAME'],
+        password: test_config['DB_PASSWORD'],
+        socket: test_config['DB_SOCKET']
+      )
+      
+      db.test_connection
+      puts "✅ Connection successful!"
+      puts "📊 Tables: #{db.tables.join(', ')}"
+      
+    rescue => e
+      puts "❌ Connection failed: #{e.message}"
+    end
+  end
+end
+
+desc "Run all tests"
+task test: 'test:all'
+
+task default: :test
