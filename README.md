@@ -9,7 +9,6 @@
 ![Downloads](https://img.shields.io/gem/dt/hyraft)
 ![License](https://img.shields.io/github/license/demjhonsilver/hyraft)
 ![Ruby Version](https://img.shields.io/badge/ruby-%3E%3D%203.4.0-red)
-![Tests](https://github.com/demjhonsilver/hyraft/actions/workflows/ci.yml/badge.svg)
 
 
 </div>
@@ -43,7 +42,7 @@ Hyraft is a modern Ruby web framework that combines excellent performance with c
 Install the gem and add to your application's Gemfile:
 
 ```bash
-gem install hyraft
+gem install hyraft --pre
 ```
 
 ## Create a new Hyraft application:

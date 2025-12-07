@@ -7,7 +7,7 @@ gemspec
 
 gem 'dotenv', '~> 3.1', '>= 3.1.8'
 gem 'rack', '~> 3.2', '>= 3.2.4'
-# gem 'hyraft'
+gem 'hyraft', '~> 0.1.0.alpha2'
 gem 'hyraft-server', '~> 0.1.0'
 gem 'hyraft-rule', '~> 0.1.0.alpha1'
 gem 'sequel', '~> 5.98'
